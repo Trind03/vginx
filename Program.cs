@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Net;
+using System.IO;
+
 
 namespace program
 {
@@ -6,7 +8,11 @@ namespace program
     {
         public static void Main()
         {
-            System.Console.Write("Hello World");
+            HttpListener Server = new HttpListener();
+            Server.Prefixes.Add("0.0.0.0::8080");
+
+            // ** Open for refactoring - Possible null referance from this expression **
+            byte[] Response = System.Text.Encoding.UTF8.GetBytes(File.ReadAllLines("./index.html").ToString());
         }
     }
 }
