@@ -1,29 +1,34 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Net.Sockets;
 
 namespace server
 {
     internal class Server
     {
-        public Server(UInt16 port)
+        public Server(int port)
         {
             try
             {
                 Listener = new HttpListener();
-                Listener.Prefixes.Add($"http://0.0.0.0::{port}/");
+                Listener.Prefixes.Add($"http://*:{port}/");
+                
             }
 
             catch(System.Exception)
             {
                 System.Console.Write("Error failed to start up.");
             }
-            Response = null;
+            Listener.Start();
+            Buffer = null;
         }
 
-
-
-        byte[]? Response;
-        HttpListener? Listener;
+        public byte[]? Buffer;
+        public HttpListener? Listener;
+        public NetworkStream? Stream;
+        public HttpListenerContext? Context;
+        public HttpListenerRequest? Request;
+        public HttpListenerResponse? Response;
     }
 }
