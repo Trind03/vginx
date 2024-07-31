@@ -1,5 +1,5 @@
 # Ignored folders
-
+bin/
 obj/
 
 # Ignored files
