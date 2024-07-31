@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.IO;
+using server;
 
 
 namespace program
@@ -9,9 +10,7 @@ namespace program
         public static byte[] Response = {};
         public static int Main()
         {
-            HttpListener Server = new HttpListener();
-            Server.Prefixes.Add("http://0.0.0.0::8080/");
-
+            Server server = new Server(8080);
             // ** Open for refactoring - Possible null referance from this expression **
             if(File.Exists("./index.html"))
             {
