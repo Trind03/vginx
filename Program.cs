@@ -13,7 +13,8 @@ namespace program
 
             if(File.Exists("./index.html"))
             {
-                string? Data = File.ReadAllLines("./index.html").ToString();
+                string? Data = "";
+                foreach(string c in File.ReadAllLines("./index.html"))  Data = Data + c;
                 if(Data == null)
                 {
                     server.Buffer = System.Text.Encoding.UTF8.GetBytes("<h1>Server error, null referance :< </h1>");
