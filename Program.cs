@@ -10,7 +10,7 @@ namespace program
         public static int Main()
         {
             HttpListener Server = new HttpListener();
-            Server.Prefixes.Add("0.0.0.0::8080");
+            Server.Prefixes.Add("http://0.0.0.0::8080/");
 
             // ** Open for refactoring - Possible null referance from this expression **
             if(File.Exists("./index.html"))
