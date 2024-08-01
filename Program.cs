@@ -1,18 +1,17 @@
 ﻿using System.Net;
 using System.IO;
+using server;
 
 
 namespace program
 {
     internal class Program
     {
-        public static void Main()
+        public static int Main()
         {
-            HttpListener Server = new HttpListener();
-            Server.Prefixes.Add("0.0.0.0::8080");
-
-            // ** Open for refactoring - Possible null referance from this expression **
-            byte[] Response = System.Text.Encoding.UTF8.GetBytes(File.ReadAllLines("./index.html").ToString());
+            Server server = new Server(8080);
+            server.start_server();
+            return 0;
         }
     }
 }
