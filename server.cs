@@ -7,6 +7,27 @@ namespace server
 {
     internal class Server
     {
+        public string fetch_type(string filename)
+        {
+            switch(Path.GetExtension(filename))
+            {
+                case ".html":
+                    return "text/html";
+                case ".css":
+                    return "text/css";
+                case ".js":
+                    return "application/javascript";
+                case ".png":
+                    return "image/png";
+                case ".jpg":
+                case ".jpeg":
+                    return "image/jpeg";
+                case ".gif":
+                    return "image/gif";
+                default:
+                    return "application/octet-stream";
+            }
+        }
         public int start_server()
         {
             while(running_status)
@@ -30,11 +51,12 @@ namespace server
 
                 Context = Listener.GetContext();
                 Request = Context.Request;
+                string Requested_file = Request.Url.LocalPath.Trim('/');
                 Response = Context.Response;
+                System.Console.Write(Requested_file,"Hello world");
                 Response.ContentLength64 = Buffer.Length;
                 System.IO.Stream Output = Response.OutputStream;
                 Output.Write(Buffer,0,Buffer.Length);
-                
             }
             return 0;
         }
