@@ -38,11 +38,7 @@ namespace server
                 Response = Context.Response;
                 Response.ContentLength64 = Buffer.Length;
                 
-                string RequestedFile = Request!.Url.LocalPath.Trim('/');
-                if(string.IsNullOrEmpty(RequestedFile))
-                {
-                    RequestedFile = "index.html";
-                }
+                RequestedFile = string.IsNullOrEmpty(Request.Url.LocalPath.Trim('/')) ? "index.html" : Request.Url.LocalPath.Trim('/');
 
                 if(File.Exists(RequestedFile))
                 {
@@ -63,18 +59,19 @@ namespace server
             }
             return 0;
         }
-        public Server(int port)
+        public Server(int port = 80)
         {
             try
             {
                 Listener = new HttpListener();
-                Listener!.Prefixes.Add($"http://*:{port}/");
-                Listener!.Start();
+                Listener.Prefixes.Add($"http://*:{port}/");
+                Listener.Start();
             }
 
             catch(System.Exception)
             {
                 System.Console.Write("Error failed to start up.");
+                Listener = new HttpListener();
             }
         }
 
@@ -84,6 +81,7 @@ namespace server
         private HttpListenerContext? Context;
         private HttpListenerRequest? Request;
         private HttpListenerResponse? Response;
+        private string? RequestedFile;
         private bool running_status = true;
     }
 }
