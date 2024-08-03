@@ -2,6 +2,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Net.Sockets;
+# nullable enable
 
 namespace server
 {
@@ -37,7 +38,7 @@ namespace server
                 Response = Context.Response;
                 Response.ContentLength64 = Buffer.Length;
                 
-                string RequestedFile = Request.Url.LocalPath.Trim('/');
+                string RequestedFile = Request!.Url.LocalPath.Trim('/');
                 if(string.IsNullOrEmpty(RequestedFile))
                 {
                     RequestedFile = "index.html";
@@ -67,8 +68,8 @@ namespace server
             try
             {
                 Listener = new HttpListener();
-                Listener.Prefixes.Add($"http://*:{port}/");
-                Listener.Start();
+                Listener!.Prefixes.Add($"http://*:{port}/");
+                Listener!.Start();
             }
 
             catch(System.Exception)
@@ -77,12 +78,12 @@ namespace server
             }
         }
 
-        public byte[] Buffer = {};
-        public HttpListener Listener;
-        public NetworkStream? Stream;
-        public HttpListenerContext? Context;
-        public HttpListenerRequest? Request;
-        public HttpListenerResponse? Response;
+        private byte[] Buffer = {};
+        private HttpListener Listener;
+        private NetworkStream? Stream;
+        private HttpListenerContext? Context;
+        private HttpListenerRequest? Request;
+        private HttpListenerResponse? Response;
         private bool running_status = true;
     }
 }
