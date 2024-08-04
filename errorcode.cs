@@ -6,6 +6,8 @@ namespace server
 {
     internal enum Error_code
     {
-        Request_nullreferance = 251
+        None = 0,
+        RequestNullReferance = 401,
+        MemberNullReferance = 402,
     }
 }

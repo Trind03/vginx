@@ -40,7 +40,7 @@ namespace server
                 
                 if (Request.Url == null)
                 {
-                    System.Console.Write("Error code: 401");
+                    System.Console.Write($"Error code: {Error_code.RequestNullReferance}");
                     return 1;
                 }
                 
