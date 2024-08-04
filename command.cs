@@ -24,6 +24,8 @@ namespace server
 
         private bool _running_status;
         private string _command;
+
+        // X Y cordinates for cursor position for input field.
         private int _offset_x;
         private int _offset_y;
     }
