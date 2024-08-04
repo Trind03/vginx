@@ -5,7 +5,7 @@ namespace server
 {
     internal class Command
     {
-        Command(int x, int y)
+        public Command(int x, int y)
         {
             _offset_x = x;
             _offset_y = y;
@@ -23,7 +23,7 @@ namespace server
         }
 
         private bool _running_status;
-        private string _command;
+        private string _command = String.Empty;
 
         // X Y cordinates for cursor position for input field.
         private int _offset_x;

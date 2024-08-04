@@ -38,6 +38,12 @@ namespace server
                 Response = Context.Response;
                 Response.ContentLength64 = Buffer.Length;
                 
+                if (Request.Url == null)
+                {
+                    System.Console.Write("Error code: 401");
+                    return 1;
+                }
+                
                 RequestedFile = string.IsNullOrEmpty(Request.Url.LocalPath.Trim('/')) ? "index.html" : Request.Url.LocalPath.Trim('/');
 
                 if(File.Exists(RequestedFile))
@@ -77,11 +83,10 @@ namespace server
 
         private byte[] Buffer = {};
         private HttpListener Listener;
-        private NetworkStream? Stream;
         private HttpListenerContext? Context;
         private HttpListenerRequest? Request;
         private HttpListenerResponse? Response;
-        private string? RequestedFile;
+        private string RequestedFile = string.Empty;
         private bool running_status = true;
     }
 }
