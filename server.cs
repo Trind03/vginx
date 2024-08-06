@@ -2,7 +2,6 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Net.Sockets;
-# nullable enable
 
 namespace server
 {
