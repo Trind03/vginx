@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
-using server;
+using app;
 
-namespace server
+namespace app.info
 {
     internal enum Error_code
     {

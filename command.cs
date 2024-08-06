@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace server
+namespace app.server
 {
     internal class Command
     {

@@ -2,8 +2,9 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Net.Sockets;
+using app.info;
 
-namespace server
+namespace app.server
 {
     internal class Server
     {
