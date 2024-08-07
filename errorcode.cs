@@ -6,7 +6,7 @@ namespace app.info
 {
     internal enum Error_code
     {
-        None = 0,
+        successful = 0,
         RequestNullReferance = 401,
         MemberNullReferance = 402,
     }
