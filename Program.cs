@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.IO;
 using System.Threading;
-using server;
+using app.server;
 
 
 namespace program
